@@ -16,10 +16,10 @@ The amsat-cli-py command-line utility is provided for convenience and a quick de
 
 ### Get Status
 ```bash
-python -m amsat status -n AO-91 -h 24
+python -m amsat-api-client-python status -n AO-91 -h 24
 ```
 
 ### Get Passes
 ```bash
-python -m amsat passes -o AO-91 -l CM85
+python -m amsat-api-client-python passes -o AO-91 -l CM85
 ```
