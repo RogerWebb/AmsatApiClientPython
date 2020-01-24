@@ -1,5 +1,5 @@
 from argparse import ArgumentParser
-from amsat import AmsatApiClient
+from . import AmsatApiClient
 from pprint import pprint
 
 def parse_args():
@@ -27,7 +27,6 @@ if __name__ == "__main__":
     if args.operation == 'status':
         pprint(amsat.get_sat_status(args.name, hours=args.hours))
     elif args.operation == "passes":
-        pprint(amsat.get_sat_passes(args.loction, args.name))
+        pprint(amsat.get_sat_passes(args.location, args.object))
     else:
         print("Invalid Operation")
-
