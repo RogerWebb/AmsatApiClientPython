@@ -1,7 +1,7 @@
 from distutils.core import setup
 setup(
-    name = 'amsat-api-client-python',
-    packages = ['amsat-api-client-python'],
+    name = 'amsatapi',
+    packages = ['amsatapi'],
     version = '0.1',
     license='MIT',
     description = 'AMSAT API Client for Python',
