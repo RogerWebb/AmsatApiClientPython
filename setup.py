@@ -2,13 +2,13 @@ from distutils.core import setup
 setup(
     name = 'amsatapi',
     packages = ['amsatapi'],
-    version = '0.1',
+    version = '0.2',
     license='MIT',
     description = 'AMSAT API Client for Python',
     author = 'Roger Webb',
     author_email = 'webb.roger@gmail.com',
-    url = 'https://github.com/Roger/AmsatApiPython',
-    download_url = 'https://github.com/RogerWebb/AmsatApiPython/archive/v_01.tar.gz',
+    url = 'https://github.com/RogerWebb/AmsatApiClientPython',
+    download_url = 'https://github.com/RogerWebb/AmsatApiPython/archive/v_02.tar.gz',
     keywords = ['AMSAT', 'SATELLITE', 'STATUS', 'PASSES'],
     install_requires=[
         'requests'
