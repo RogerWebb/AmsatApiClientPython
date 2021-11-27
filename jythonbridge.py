@@ -184,14 +184,20 @@ class FoxTelemSatelliteManagerBridge:
         elif action == 'foxdb-download':
             return {'status': 'error', 'error': 'not-implemented'}
         elif action == 'position':
-            return {'status': 'error', 'error': 'not-implemented'}
+            # /spacecraft/4/position
+            if 'resets' not in params or 'uptime' not in params:
+                return {'status': 'error', 'error': 'MISSING_PARAM'}
+
+            return self.get_position(spacecraft, int(params['resets']), int(params['uptime']))
         elif action == 't0-table':
+            # /spacecraft/4/t0-table
             return self.get_t0_table(spacecraft)
         elif action == 'utctime':
-            resets = int(params['resets'])
-            uptime = int(params['uptime'])
+            # /spacecraft/4/utctime
+            if 'resets' not in params or 'uptime' not in params:
+                return {'status': 'error', 'error': 'MISSING_PARAM'}
 
-            return self.get_utctime(spacecraft, resets, uptime)
+            return self.get_utctime(spacecraft, int(params['resets']), int(params['uptime']))
         else:
             return {'status': 'error', 'error': 'Unknown Action'}
 
@@ -225,6 +231,14 @@ class FoxTelemSatelliteManagerBridge:
         props['foxdb_url'] = "/".join([Config.webSiteUrl, props['server_dir'], 'FOXDB.tar.gz'])
 
         return props
+
+    def get_position(self, spacecraft, reset, uptime):
+        satpos = spacecraft.getSatellitePosition(reset, uptime)
+
+        return {
+            'latitude':  satpos.getLatitude(),
+            'longitude': satpos.getLongitude()
+        }
 
     def get_utctime(self, spacecraft, reset, uptime):
         return {'status': 'ok', 'utctime': spacecraft.getUtcDateTimeForReset(reset, uptime).getMillis()}
