@@ -60,10 +60,11 @@ class FoxTelemJythonBridge:
         while True:
             try:
                 event = json.loads(sys.stdin.readline()[:-1])
+                self.process_event(event)
             except ValueError:
                 continue
 
-        self.process_event(event)
+
 
     def process_event(self, event):
         resource = event['resource'].split('/')

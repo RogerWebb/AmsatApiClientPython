@@ -51,10 +51,11 @@ class FoxTelemBridge:
 
         return self._call("/spacecraft/{}".format(id if id is not None else name))
 
-    def get_spacecraft_utctime(self, id=None, name=None):
+    def get_spacecraft_utctime(self, id=None, name=None, resets=0, uptime=0):
         if id is None and name is None:
             raise ValueError("Must pass id or name")
 
-        return self._call("/spacecraft/{}/utctime".format(id if id is not None else name))
+        params = {'resets': resets, 'uptime': uptime}
+        return self._call("/spacecraft/{}/utctime".format(id if id is not None else name), params=params)
 
 
